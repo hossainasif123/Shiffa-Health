@@ -1,0 +1,166 @@
+/* Profile Container Styling */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.profile-name {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.profile-photo {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect */
+.profile-photo:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    border: 4px solid silver;/* Optional border color change */
+}
+
+
+.profile-info {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.profile-info li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-info li:last-child {
+    border-bottom: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content:center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 1em;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    box-shadow: 0 0.7em 1.5em -0.5em ;
+    box-shadow: 0 0.7em 1.5em -0.5em ;
+    letter-spacing: 0.05em;
+    border-radius: 20em;
+    font-weight: 500;
+    font-size: 12px;
+    padding: 0.7em 1.4em 0.7em 1.1em;
+    color: white;
+    
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #dc3545;
+}
+/* Container for buttons below vaccination records */
+.button-container-vaccine {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.btn-small {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 10px;
+    cursor: pointer;
+    justify-content: left;
+}
+
+.btn-add {
+    background-color: #28a745; /* Green for Add */
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Red for Delete */
+}
+
+.btn-edit {
+    background-color: #007bff; /* Blue for Edit */
+  
+}
+
+.btn-small:hover {
+    opacity: 0.8;
+}

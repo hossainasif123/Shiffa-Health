@@ -1,0 +1,168 @@
+
+{% extends 'profiles/base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<div class="form-container">
+    <h1>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Patient Profile</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Basic Information -->
+        <h3>Basic Information</h3>
+        <div class="form-group">
+            {{ form.full_name.label_tag }}
+            {{ form.full_name }}
+        </div>
+        <div class="form-group">
+            {{ form.birthdate.label_tag }}
+            {{ form.birthdate }}
+        </div>
+        <div class="form-group">
+            {{ form.gender.label_tag }}
+            {{ form.gender }}
+        </div>
+        <div class="form-group">
+            {{ form.contact_number.label_tag }}
+            {{ form.contact_number }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </div>
+
+        <!-- Address and Emergency Contact -->
+        <h3>Address and Emergency Contact</h3>
+        <div class="form-group">
+            {{ form.address.label_tag }}
+            {{ form.address }}
+        </div>
+        <div class="form-group">
+            {{ form.emergency_contact_name.label_tag }}
+            {{ form.emergency_contact_name }}
+        </div>
+        <div class="form-group">
+            {{ form.emergency_contact_relationship.label_tag }}
+            {{ form.emergency_contact_relationship }}
+        </div>
+        <div class="form-group">
+            {{ form.emergency_contact_number.label_tag }}
+            {{ form.emergency_contact_number }}
+        </div>
+
+        <!-- Medical History -->
+        <h3>Medical History</h3>
+        <div class="form-group">
+            {{ form.past_medical_conditions.label_tag }}
+            {{ form.past_medical_conditions }}
+        </div>
+        <div class="form-group">
+            {{ form.allergies.label_tag }}
+            {{ form.allergies }}
+        </div>
+        <div class="form-group">
+            {{ form.current_medications.label_tag }}
+            {{ form.current_medications }}
+        </div>
+        <div class="form-group">
+            {{ form.family_medical_history.label_tag }}
+            {{ form.family_medical_history }}
+        </div>
+
+        <!-- Lifestyle and Preferences -->
+        <h3>Lifestyle and Preferences</h3>
+        <div class="form-group">
+            {{ form.occupation.label_tag }}
+            {{ form.occupation }}
+        </div>
+        <div class="form-group">
+            {{ form.smoking_status.label_tag }}
+            {{ form.smoking_status }}
+        </div>
+        <div class="form-group">
+            {{ form.alcohol_consumption.label_tag }}
+            {{ form.alcohol_consumption }}
+        </div>
+        <div class="form-group">
+            {{ form.physical_activity_level.label_tag }}
+            {{ form.physical_activity_level }}
+        </div>
+        <div class="form-group">
+            {{ form.dietary_preferences.label_tag }}
+            {{ form.dietary_preferences }}
+        </div>
+
+        <!-- Health Details -->
+        <h3>Health Details</h3>
+        <div class="form-group">
+            {{ form.vital_signs.label_tag }}
+            {{ form.vital_signs }}
+        </div>
+        <div class="form-group">
+            {{ form.lab_results.label_tag }}
+            {{ form.lab_results }}
+        </div>
+
+        <!-- Appointments and Medical Notes -->
+        <h3>Appointments and Medical Notes</h3>
+        <div class="form-group">
+            {{ form.previous_appointments.label_tag }}
+            {{ form.previous_appointments }}
+        </div>
+        <div class="form-group">
+            {{ form.upcoming_appointments.label_tag }}
+            {{ form.upcoming_appointments }}
+        </div>
+        <div class="form-group">
+            {{ form.medical_notes.label_tag }}
+            {{ form.medical_notes }}
+        </div>
+
+        <!-- Treatment and Follow-up Care -->
+        <h3>Treatment and Follow-up Care</h3>
+        <div class="form-group">
+            {{ form.ongoing_treatments.label_tag }}
+            {{ form.ongoing_treatments }}
+        </div>
+        <div class="form-group">
+            {{ form.specialist_referrals.label_tag }}
+            {{ form.specialist_referrals }}
+        </div>
+        <div class="form-group">
+            {{ form.follow_up_care_instructions.label_tag }}
+            {{ form.follow_up_care_instructions }}
+        </div>
+
+        <!-- Insurance and Other Details -->
+        <h3>Insurance and Other Details</h3>
+        <div class="form-group">
+            {{ form.insurance_provider.label_tag }}
+            {{ form.insurance_provider }}
+        </div>
+        <div class="form-group">
+            {{ form.policy_number.label_tag }}
+            {{ form.policy_number }}
+        </div>
+        <div class="form-group">
+            {{ form.coverage_details.label_tag }}
+            {{ form.coverage_details }}
+        </div>
+       
+        <div class="form-group">
+            {{ form.preferred_pharmacy.label_tag }}
+            {{ form.preferred_pharmacy }}
+        </div>
+        <div class="form-group">
+            {{ form.profile_photo.label_tag }}
+            {{ form.profile_photo }}
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">{% if form.instance.pk %}Update{% else %}Create{% endif %}</button>
+         
+        </div>
+    </form>
+</div>
+{% endblock %}

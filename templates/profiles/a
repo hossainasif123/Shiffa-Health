@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'profiles/base.html' %}
+
+    {% block content %}
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pet_profile.name }}'s Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+
+<body>
+    <div class="profile-container">
+        <h1 class="profile-name">{{ pet_profile.name }}'s Profile</h1>
+        
+        <!-- Profile Image -->
+        {% if pet_profile.profile_photo %}
+            <img src="{{ pet_profile.profile_photo.url }}" alt="{{ pet_profile.name }}'s photo" class="profile-photo">
+        {% else %}
+            <img src="{% static 'images/default-profile.png' %}" alt="Default profile photo" class="profile-photo">
+        {% endif %}
+
+        <!-- Pet Profile Information -->
+        <ul class="profile-info">
+            <li><strong>Species:</strong> {{ pet_profile.species }}</li>
+            <li><strong>Breed:</strong> {{ pet_profile.breed }}</li>
+            <li><strong>Birthdate:</strong> {{ pet_profile.birthdate|date:"F d, Y" }}</li>
+            <li><strong>Gender:</strong> {{ pet_profile.get_gender_display }}</li>
+            <li><strong>Favourite Foods:</strong> {{ pet_profile.favorite_foods}}</li>
+            <li><strong>Adoption Date:</strong> {{ pet_profile.adoption_date|date:"F d, Y" }}</li>
+            <li><strong>Spayed/Neutered:</strong> {{ pet_profile.spayed_neutered|yesno:"Yes,No" }}</li>
+            <li><strong>Emergency Contacts:</strong> {{ pet_profile.emergency_contacts }}</li>
+            {% if request.user == pet_profile.owner or request.user.is_staff or request.user.is_superuser %}
+            <!-- Content for the owner or admin -->
+            <li><strong>Medical History:</strong> {{ pet_profile.medical_history }}</li>
+            <li><strong>Current Medication:</strong> {{ pet_profile.current_medication }}</li>
+            <li><strong>Allergies:</strong> {{ pet_profile.allergies }}</li>
+            <li><strong>Feeding Schedule:</strong> {{ pet_profile.feeding_schedule }}</li>
+            <li><strong>Exercise Routine:</strong> {{ pet_profile.exercise_routine }}</li>
+            <li><strong>Grooming Schedule:</strong> {{ pet_profile.grooming_schedule }}</li>
+            <li><strong>Temperament:</strong> {{ pet_profile.temperament }}</li>
+            <li><strong>Training History:</strong> {{ pet_profile.training_history }}</li>
+            <li><strong>Behavioral Notes:</strong> {{ pet_profile.behavioral_notes }}</li>
+            <li><strong>License Information:</strong> {{ pet_profile.license_information }}</li>
+            <li><strong>Collar ID Tag:</strong> {{ pet_profile.collar_id_tag }}</li>
+            <li><strong>Microchip ID:</strong> {{ pet_profile.microchip_id }}</li>
+           
+            <li><strong>Next Vet Checkup:</strong> {{ pet_profile.next_vet_checkup|date:"F d, Y" }}</li>
+           
+            <li><strong>Weight:</strong> {{ pet_profile.weight }} kg</li>
+            <li><strong>Spayed/Neutered:</strong> {{ pet_profile.spayed_neutered|yesno:"Yes,No" }}</li>
+            <li><strong>Insurance Policy Details:</strong> {{ pet_profile.insurance_policy_details }}</li>
+            <li><strong>Insurance Claims History:</strong> {{ pet_profile.insurance_claims_history }}</li>
+            
+            {% endif %}
+        </ul>
+
+        <!-- Vaccination Records -->
+        {% if request.user == pet_profile.owner %}
+        <h2>Vaccination Records</h2>
+        {% if pet_profile.vaccination_records.exists %}
+            <ul>
+                {% for record in pet_profile.vaccination_records.all %}
+                    <li>
+                        <strong>Vaccine Name:</strong> {{ record.vaccine_name }} <br>
+                        <strong>Date Given:</strong> {{ record.date_given|date:"F d, Y" }} <br>
+                        <strong>Next Due Date:</strong> {{ record.next_due_date|date:"F d, Y" }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No vaccination records available.</p>
+        {% endif %}
+
+        <!-- Buttons for Vaccination Records -->
+        
+        <div class="button-container-vaccine">
+            <a href="{% url 'profiles:vaccinationrecord-create' pet_profile.id %}" class="btn btn-small btn-add">Add Vaccine Record</a>
+            <a href="{% url 'profiles:vaccinationrecord-delete' pet_profile.id %}" class="btn btn-small btn-delete">Delete Vaccine Record</a>
+            <a href="{% url 'profiles:vaccinationrecord-update' pet_profile.id %}" class="btn btn-small btn-edit">Edit Vaccine Record</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Buttons -->
+    {% if request.user == pet_profile.owner %}
+    <div class="button-container">
+        <a href="{% url 'profiles:petprofile-update' pet_profile.id %}" class="btn btn-primary">Edit Profile</a>
+        <a href="{% url 'profiles:petprofile-delete' pet_profile.id %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'users:petprofile-list' %}" class="btn btn-secondary">Return to pets</a>
+    </div>
+    {% endif %}
+    
+    <!-- Modal -->
+    <div id="profileImageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" style="width: 100%; height: auto;">
+        </div>
+    </div>
+
+    <script src="{% static 'js/profile.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

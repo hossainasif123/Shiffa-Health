@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{% block title %}Pet Care{% endblock %}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="navbar-right">
+            <li><a href="{% url 'users:dashboard' %}">Home</a></li>
+            <li><a href="{% url 'profiles:prescription_media_list' %}">Prescription</a></li>
+            <li><a href="{% url 'doctor:doctor_list' %}">Doctor List</a></li>
+
+            <!-- Notification Button with Dropdown -->
+            {% if request.user.is_authenticated and request.user.role == 'doctor' %}
+            <li class="dropdown">
+                <a href="{% url 'doctor:notifications' %}" class="btn btn-primary" id="notificationDropdown">
+                    Notifications
+                   
+                   
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="notificationDropdown" id="notifications-dropdown">
+                    <li class="dropdown-header"></li>
+                    <!-- Dynamic notifications will be added here -->
+                    {% if notifications %}
+                        {% for notification in notifications %}
+                            {% if not notification.is_read %}
+                                <li class="notification-item">{{ notification.message }} - {{ notification.created_at }}</li>
+                            {% endif %}
+                        {% endfor %}
+                 
+                    {% endif %}
+                </ul>
+            </li>
+        {% endif %}
+        
+
+            {% if request.user.is_authenticated %}
+            <!-- If the user is a doctor, show Doctor Profile button -->
+            {% if request.user.role == 'doctor' %}
+                <li><a href="{% url 'doctor:doctor_profile' request.user.doctorprofile.pk %}" class="btn btn-primary">View Doctor Profile</a></li>
+
+            <!-- If the user is a pet owner and has a pet profile, show the profile -->
+            {% elif request.user.role == 'public' and request.user.patients.exists %}
+                <li><a href="{% url 'users:show-profile' request.user.patients.first.id %}" class="btn btn-primary">View Pet Profile</a></li>
+
+            <!-- If the user is a pet owner but doesn't have a pet profile, show Create Profile option -->
+            {% elif request.user.role == 'public' %}
+                <li><a href="{% url 'profiles:patient-create' %}" class="btn btn-primary">Create Patient Profile</a></li>
+
+            {% endif %}
+
+            <!-- Logout option for all authenticated users -->
+            <li><a href="{% url 'users:logout' %}">Logout</a></li>
+
+            {% else %}
+            <!-- Login option for unauthenticated users -->
+            <li><a href="{% url 'users:login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Main content -->
+    <div class="content">
+        {% block content %}
+        <!-- Page-specific content will go here -->
+        {% endblock %}
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+    
+    <!-- Notification handling script -->
+    <script src="{% static 'js/anotifications.js' %}"></script>
+</body>
+
+</html>

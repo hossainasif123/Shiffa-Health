@@ -1,0 +1,11 @@
+{% extends 'profiles/base.html' %}
+
+{% block content %}
+  <h2>Book an Appointment with Dr. {{ time_slot.doctor_profile.user }} </h2>
+  <p><strong>Time Slot:</strong> {{ time_slot.day_of_week }}: {{ time_slot.start_time }} - {{ time_slot.end_time }}</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{% block title %}Shiffa{% endblock %}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="navbar-right">
+            <li><a href="{% url 'users:dashboard' %}">Home</a></li>
+            
+
+           
+
+            {% if request.user.is_authenticated %}
+            <!-- If the user is a doctor, show Doctor Profile button -->
+            
+            <!-- If the user is a pet owner and has a pet profile, show the profile -->
+           
+
+        
+           
+            <!-- Logout option for all authenticated users -->
+            <li><a href="{% url 'users:logout' %}">Logout</a></li>
+
+            {% else %}
+            <!-- Login option for unauthenticated users -->
+            <li><a href="{% url 'users:login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Main content -->
+    <div class="content">
+        {% block content %}
+        <!-- Page-specific content will go here -->
+        {% endblock %}
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+    
+    <!-- Notification handling script -->
+    <script src="{% static 'js/anotifications.js' %}"></script>
+</body>
+
+</html>

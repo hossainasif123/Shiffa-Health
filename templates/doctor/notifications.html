@@ -1,0 +1,20 @@
+
+{% extends 'profiles/base.html' %}
+{% block content %}
+{% load static %}  <!-- Load static tag at the top of the file -->
+
+<h2>Your Notifications</h2>
+
+<ul class="dropdown-menu" aria-labelledby="notificationDropdown" id="notifications-dropdown">
+    <li class="dropdown-header">Recent Notifications</li>
+    <!-- Dynamic notifications will be added here -->
+    {% for notification in notifications %}
+        <li class="notification-item">{{ notification.message }} - {{ notification.created_at }}</li>
+    {% empty %}
+        <li class="notification-item">No notifications</li>
+    {% endfor %}
+</ul>
+
+<!-- Include the notifications.js file -->
+<script src="{% static 'js/anotifications.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,120 @@
+/* Reset some default styles */
+body, h1, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a font family and base styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Style the navigation bar */
+.navbar {
+    background-color:teal;
+
+    padding: 1rem;
+    text-align: center;
+}
+
+.navbar-right {
+    list-style-type: none;
+}
+
+.navbar-right li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar-right li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.navbar-right li a:hover {
+    text-decoration: underline;
+}
+
+/* Style the input field */
+.navbar-right input[type="text"] {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-wrapper {
+    margin-top: 80px; /* To make space for the fixed navbar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); /* Adjust for navbar height */
+}
+
+.form-container {
+    background-color: #f4f4f4;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    flex-basis: 120px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input {
+    flex-basis: calc(100% - 140px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: teal;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color:cadetblue;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.login-link a {
+    color:teal;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

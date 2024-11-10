@@ -1,0 +1,33 @@
+{% extends 'profiles/base.html' %}
+
+{% block content %}
+  <div class="doctorprofile">
+    <h2>Dr. {{ doctorprofile.user }} </h2>
+    <img src="{{ doctorprofile.profile_picture.url }}" alt="Profile Picture">
+    <p><strong>Specialization:</strong> {{ doctorprofile.specialization }}</p>
+    <p><strong>License Number:</strong> {{ doctorprofile.license_number }}</p>
+    <p><strong>Experience:</strong> {{ doctorprofile.years_of_experience }} years</p>
+    <p><strong>Qualifications:</strong> {{ doctorprofile.qualifications }}</p>
+
+    <h3>Available Time Slots</h3>
+    <ul>
+      {% for slot in doctorprofile.time_slots.all %}
+        <li>{{ slot.day_of_week }}: {{ slot.start_time }} - {{ slot.end_time }} 
+          <a href="{% url 'doctor:book_appointment' slot.id %}">Book</a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <h3>Reviews</h3>
+    <ul>
+      {{reviews.user}}
+      {% for review in doctorprofile.reviews.all %}
+        <li>{{ review.user}}: {{ review.rating }}/5 - "{{ review.comment }}"</li>
+      {% endfor %}
+    </ul>
+
+    <a href="{% url 'doctor:leave_review' doctorprofile.id %}">Leave a Review</a>
+  </div>
+{% endblock %}
+
+

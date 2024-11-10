@@ -1,0 +1,9 @@
+{% extends 'profiles/base.html' %}
+
+{% block content %}
+  <h2>Booking Confirmation</h2>
+  <p>Thank you for booking with {{ booking.time_slot.doctor_profile }}</p>
+  <p><strong>Time Slot:</strong> {{ booking.time_slot.day_of_week }}: {{ booking.time_slot.start_time }} - {{ booking.time_slot.end_time }}</p>
+  <p><strong>Payment Status:</strong> {{ booking.payment_status }}</p>
+  <p><strong>Amount:</strong> ${{ booking.amount }}</p>
+{% endblock %}

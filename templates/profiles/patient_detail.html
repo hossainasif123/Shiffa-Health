@@ -1,0 +1,131 @@
+{% extends 'profiles/base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<div class="profile-container">
+    <h1>Patient Profile</h1>
+    
+    <div class="detail-group">
+        {% if patient.profile_photo %}
+            <img src="{{ patient.profile_photo.url }}" alt="Profile Photo" class="profile-photo">
+        {% else %}
+            <p>No photo available</p>
+        {% endif %}
+    </div>
+
+    <!-- Basic Information -->
+    <h3>Basic Information</h3>
+    <div class="detail-group">
+        <p><strong>Full Name:</strong> {{ patient.full_name }}</p>
+        <p><strong>Birthdate:</strong> {{ patient.birthdate }}</p>
+        <p><strong>Gender:</strong> {{ patient.gender }}</p>
+        <p><strong>Contact Number:</strong> {{ patient.contact_number }}</p>
+        <p><strong>Email:</strong> {{ patient.email }}</p>
+    </div>
+
+    <!-- Address and Emergency Contact -->
+    <h3>Address and Emergency Contact</h3>
+    <div class="detail-group">
+        <p><strong>Address:</strong> {{ patient.address }}</p>
+        <p><strong>Emergency Contact Name:</strong> {{ patient.emergency_contact_name }}</p>
+        <p><strong>Relationship:</strong> {{ patient.emergency_contact_relationship }}</p>
+        <p><strong>Contact Number:</strong> {{ patient.emergency_contact_number }}</p>
+    </div>
+
+    <!-- Medical History -->
+    <h3>Medical History</h3>
+    <div class="detail-group">
+        <p><strong>Past Medical Conditions:</strong> {{ patient.past_medical_conditions }}</p>
+        <p><strong>Allergies:</strong> {{ patient.allergies }}</p>
+        <p><strong>Current Medications:</strong> {{ patient.current_medications }}</p>
+        <p><strong>Family Medical History:</strong> {{ patient.family_medical_history }}</p>
+    </div>
+
+    <!-- Lifestyle and Preferences -->
+    <h3>Lifestyle and Preferences</h3>
+    <div class="detail-group">
+        <p><strong>Occupation:</strong> {{ patient.occupation }}</p>
+        <p><strong>Smoking Status:</strong> {{ patient.smoking_status }}</p>
+        <p><strong>Alcohol Consumption:</strong> {{ patient.alcohol_consumption }}</p>
+        <p><strong>Physical Activity Level:</strong> {{ patient.physical_activity_level }}</p>
+        <p><strong>Dietary Preferences:</strong> {{ patient.dietary_preferences }}</p>
+    </div>
+
+    <!-- Health Details -->
+    <h3>Health Details</h3>
+    <div class="detail-group">
+        <p><strong>Vital Signs:</strong> {{ patient.vital_signs }}</p>
+        <p><strong>Lab Results:</strong> {{ patient.lab_results }}</p>
+    </div>
+
+    <!-- Appointments and Medical Notes -->
+    <h3>Appointments and Medical Notes</h3>
+    <div class="detail-group">
+        <p><strong>Previous Appointments:</strong> {{ patient.previous_appointments }}</p>
+        <p><strong>Upcoming Appointments:</strong> {{ patient.upcoming_appointments }}</p>
+        <p><strong>Medical Notes:</strong> {{ patient.medical_notes }}</p>
+    </div>
+
+    <!-- Treatment and Follow-up Care -->
+    <h3>Treatment and Follow-up Care</h3>
+    <div class="detail-group">
+        <p><strong>Ongoing Treatments:</strong> {{ patient.ongoing_treatments }}</p>
+        <p><strong>Specialist Referrals:</strong> {{ patient.specialist_referrals }}</p>
+        <p><strong>Follow-up Care Instructions:</strong> {{ patient.follow_up_care_instructions }}</p>
+    </div>
+
+    <!-- Insurance and Other Details -->
+    <h3>Insurance and Other Details</h3>
+    <div class="detail-group">
+        <p><strong>Insurance Provider:</strong> {{ patient.insurance_provider }}</p>
+        <p><strong>Policy Number:</strong> {{ patient.policy_number }}</p>
+        <p><strong>Coverage Details:</strong> {{ patient.coverage_details }}</p>
+        <p><strong>Preferred Communication Method:</strong> {{ patient.preferred_communication_method }}</p>
+        <p><strong>Preferred Pharmacy:</strong> {{ patient.preferred_pharmacy }}</p>
+    </div>
+
+    <!-- Profile Photo -->
+    <!-- Vaccination Records -->
+    {% if request.user == patient.owner %}
+    <h2>Vaccination Records</h2>
+    
+    {% if vaccination_records.exists %}
+    
+    <ul>
+        {% for record in vaccination_records %}
+            <li>
+                <strong>Vaccine Name:</strong> {{ record.vaccine_name }} <br>
+                <strong>Date Given:</strong> {{ record.date_given|date:"F d, Y" }} <br>
+                <strong>Next Due Date:</strong> {{ record.next_due_date|date:"F d, Y" }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No vaccination records available.</p>
+{% endif %}
+
+
+
+    <!-- Buttons for Vaccination Records -->
+    
+   
+        <a href="{% url 'profiles:vaccinationrecord-create' patient.id %}" class="btn btn-small btn-add">Add Vaccine Record</a>
+        <a href="{% url 'profiles:vaccinationrecord-delete' patient.id %}" class="btn btn-small btn-delete">Delete Vaccine Record</a>
+        <a href="{% url 'profiles:vaccinationrecord-update' patient.id %}" class="btn btn-small btn-edit">Edit Vaccine Record</a>
+    </div>
+    {% endif %}
+</div>
+
+
+
+    {% if request.user == patient.owner %}
+    
+    <div class="button-container">
+        <a href="{% url 'profiles:patient-update' patient.id %}" class="btn btn-primary">Edit Profile</a>
+        <a href="{% url 'profiles:patient-delete' patient.id %}" class="btn btn-danger">Delete</a>
+        
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

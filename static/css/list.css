@@ -1,0 +1,55 @@
+/* Container for the profile grid */
+.profile-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  /* Individual profile grid item */
+  .profile-grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* Profile image (circular, minimal design) */
+  .profile-img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  /* Pet name styling */
+  .pet-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .pet-name a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .pet-name a:hover {
+    color: #007bff;
+  }
+  
+  /* Owner name styling */
+  .owner-name {
+    font-size: 14px;
+    color: #777;
+  }
+  
+  /* Add some hover effects */
+  .profile-grid-item:hover .pet-name a {
+    color: #007bff;
+  }
+  

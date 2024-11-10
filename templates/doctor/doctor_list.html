@@ -1,0 +1,10 @@
+{% extends "profiles/base.html" %}
+
+{% block content %}
+    <h1>Doctors</h1>
+    <ul>
+        {% for doctor in doctors %}
+            <li><a href="{% url 'doctor:doctor_profile' doctor.pk %}">{{ doctor.user.username }} - {{ doctor.specialization }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

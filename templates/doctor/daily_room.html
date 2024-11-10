@@ -1,0 +1,138 @@
+<!-- daily_room.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <script src="https://unpkg.com/@daily-co/daily-js"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full text-center">
+        <h1 class="text-2xl font-semibold mb-4">Daily Room - Host Interface</h1>
+
+        <!-- Video Frame -->
+        <div id="daily-video" class="w-full h-64 bg-gray-200 rounded-lg mb-4"></div>
+
+        <!-- End Meeting Button (visible only to host) -->
+        <button 
+            id="end-meeting-btn" 
+            class="bg-red-600 text-white font-semibold py-2 px-4 rounded hover:bg-red-700 w-full">
+            End Meeting
+        </button>
+    </div>
+
+    <script>
+        const dailyRoomName = "{{ room_name }}"; // Inject the room name from Django context
+        const dailyIframe = document.getElementById("daily-video");
+        const endMeetingBtn = document.getElementById("end-meeting-btn");
+
+        // Initialize the Daily iframe for video calls
+        const dailyCall = window.DailyIframe.createFrame(dailyIframe, {
+            showLeaveButton: true,
+            iframeStyle: {
+                width: "100%",
+                height: "100%",
+                borderRadius: "8px",
+            }
+        });
+
+        // Join the room using the host's meeting token
+        dailyCall.join({ 
+          url: `https://petcare.daily.co/${dailyRoomName}`,
+            token: "{{ host_token }}" // Inject the host token from Django context
+        });
+
+        // End meeting event
+        endMeetingBtn.addEventListener("click", async () => {
+            const response = await fetch(`/end-meeting/${dailyRoomName}/`, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "Content-Type": "application/json"
+                },
+            });
+            
+            if (response.ok) {
+                alert("Meeting ended successfully");
+                dailyCall.leave();  // Leave the Daily room
+                window.location.href = "/";  // Redirect to home or desired page
+            } else {
+                alert("Failed to end the meeting");
+            }
+        });
+    </script>
+</body>
+</html>
+<!-- daily_room.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <script src="https://unpkg.com/@daily-co/daily-js"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full text-center">
+        <h1 class="text-2xl font-semibold mb-4">Daily Room - Host Interface</h1>
+
+        <!-- Video Frame -->
+        <div id="daily-video" class="w-full h-64 bg-gray-200 rounded-lg mb-4"></div>
+
+        <!-- End Meeting Button (visible only to host) -->
+        <button 
+            id="end-meeting-btn" 
+            class="bg-red-600 text-white font-semibold py-2 px-4 rounded hover:bg-red-700 w-full">
+            End Meeting
+        </button>
+    </div>
+
+    <script>
+        const dailyRoomName = "{{ room_name }}"; // Inject the room name from Django context
+        const dailyIframe = document.getElementById("daily-video");
+        const endMeetingBtn = document.getElementById("end-meeting-btn");
+
+        // Initialize the Daily iframe for video calls
+        const dailyCall = window.DailyIframe.createFrame(dailyIframe, {
+            showLeaveButton: true,
+            iframeStyle: {
+                width: "100%",
+                height: "100%",
+                borderRadius: "8px",
+            }
+        });
+
+        // Join the room using the host's meeting token
+        dailyCall.join({ 
+                 url: `https://petcare.daily.co/${dailyRoomName}`,
+
+
+            token: "{{ host_token }}" // Inject the host token from Django context
+        });
+
+        // End meeting event
+        endMeetingBtn.addEventListener("click", async () => {
+            const response = await fetch(`/end-meeting/${dailyRoomName}/`, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "Content-Type": "application/json"
+                },
+            });
+            
+            if (response.ok) {
+                alert("Meeting ended successfully");
+                dailyCall.leave();  // Leave the Daily room
+                window.location.href = "/";  // Redirect to home or desired page
+            } else {
+                alert("Failed to end the meeting");
+            }
+        });
+    </script>
+</body>
+</html>

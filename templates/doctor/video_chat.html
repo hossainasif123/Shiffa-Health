@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Chat</title>
+</head>
+<body>
+    <h1>Video Chat Room</h1>
+    {% if join_url %}
+        <a href="{{ join_url }}" target="_blank">Join Video Chat</a>
+        <iframe
+            src="{{ join_url }}"
+            allow="camera; microphone; fullscreen; speaker; display-capture"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+        ></iframe>
+    {% else %}
+        <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>

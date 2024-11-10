@@ -1,0 +1,132 @@
+/* Reset some default styles */
+body, h1, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a font family and base styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+    margin-top: 80px; /* Ensure space for the fixed navbar */
+}
+
+/* Form wrapper to center the form */
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    padding-top: 2rem;
+}
+
+/* Form container with background and shadow */
+.form-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Form header */
+.form-container h1 {
+    margin-bottom: 1.5rem;
+    color: peru;
+    text-align: center;
+}
+
+/* Password instruction styling */
+.password-instruction {
+    margin-bottom: 0.5rem;
+    color: #555;
+    text-align: center;
+    font-size: 0.875rem; /* Smaller font size */
+}
+
+/* Highlighted input field styling */
+.highlight-field {
+    margin-bottom: 1rem;
+}
+
+.highlight-field input[type="password"] {
+    padding: 10px;
+    border-radius: 4px;
+    border: 2px solid peru; /* Highlight with border color */
+    width: 100%;
+    font-size: 1rem;
+}
+
+/* Button styling */
+button {
+    background-color: peru;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: darkorange;
+}
+
+/* Error message styling */
+/* Existing styles are unchanged */
+
+/* Existing styles are unchanged */
+/* Existing styles are unchanged */
+
+.error-messages {
+    background-color: #fce4e4;
+    color: #cc0000;
+    padding: 12px;
+    border: 1px solid #cc0000;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-size: 0.9rem; /* Slightly smaller font */
+    text-align: left; /* Align text to the left */
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.1); /* Subtle red shadow */
+}
+
+.error-messages ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; /* Remove bullets from the list */
+}
+
+.error-messages li {
+    margin-left: 0; /* Ensure no left margin */
+    padding-left: 0; /* Ensure no left padding */
+}
+
+/* Error message paragraph style */
+.error-messages p {
+    margin: 0;
+}
+
+
+
+/* Back to login link styled as a button */
+.back-to-login {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 10px 15px;
+    background-color: peru;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.back-to-login:hover {
+    background-color: darkorange;
+}

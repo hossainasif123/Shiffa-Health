@@ -1,0 +1,221 @@
+/* Base styles for the media grid */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px;
+    padding: 10px;
+    justify-content: center;
+    align-items: start;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Media item styling */
+.media-item {
+   
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.media-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Media thumbnail styling */
+.media-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+/* Zoom effect on hover */
+.media-item:hover .media-thumbnail {
+    transform: scale(1.05);
+}
+
+/* Options menu styling */
+.options-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.options-menu .fa-ellipsis-h {
+    color: #333;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 4px;
+    border-radius: 50%;
+}
+
+.options-menu:hover .fa-ellipsis-h {
+    color: #007bb5;
+}
+
+/* Dropdown styling */
+.options-dropdown {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 120px;
+    z-index: 20;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.options-dropdown a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 20%;
+}
+
+.options-dropdown a:hover {
+    background-color: #f0f0f0;
+    color: #007bb5;
+    padding:10px;
+    border-radius: 30%;
+}
+
+/* Show dropdown on hover */
+.options-menu:hover .options-dropdown,
+.options-dropdown {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Add button styling */
+.add-button {
+    position: fixed;
+    top: 180px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: #007bb5;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.add-button:hover {
+    background-color: #005f8d;
+    transform: scale(1.1);
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center; /* Center content vertically */
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 1080px;
+    background-color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+#modal-image {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 10px;
+}
+
+#modal-video {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 35px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* DELETE MODAL-D SPECIFIC STYLING */
+
+/* Modal for delete confirmation */
+.modal-d-content {
+    position: relative;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-d-buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.btn-confirm {
+    background-color: #007bb5;
+    color: #fff;
+}
+
+.btn-confirm:hover {
+    background-color: #005f8d;
+}
+
+.btn-cancel {
+    background-color: #ccc;
+    color: #000;
+}
+
+.btn-cancel:hover {
+    background-color: #999;
+}
