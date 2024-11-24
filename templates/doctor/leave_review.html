@@ -1,20 +1,47 @@
 {% extends 'profiles/base.html' %}
 
+{% load static %}
+
 {% block content %}
-  <h2>Leave a Review for Dr. {{ doctor_profile.user }}</h2>
+<div class="container mt-8">
+  <div class="card shadow-lg p-6 border-0 rounded-xl">
+    <div class="card-body">
+      <h2 class="text-center mb-6 text-2xl font-semibold text-gray-800">Leave a Review for Dr. {{ doctorprofile.user.username }}</h2>
+      
+      <form method="post" class="space-y-6">
+        {% csrf_token %}
+        
+        <!-- Rating Field -->
+        <div class="form-group">
+          <label for="rating" class="form-label text-lg text-gray-700">Rating</label>
+          <div id="star-rating" class="flex items-center space-x-1">
+            <!-- Star Rating -->
+            {% for i in "12345" %}
+              <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" class="hidden" />
+              <label for="star{{ i }}" class="star text-2xl cursor-pointer">&#9733;</label>
+            {% endfor %}
+          </div>
+        </div>
 
-  <form method="post">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="rating">Rating (1-5)</label>
-      {{ form.rating }}
+        <!-- Comment Field -->
+        <div class="form-group">
+          <label for="comment" class="form-label text-lg text-gray-700">Comment</label>
+          {{ form.comment }}
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary bg-blue-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Submit Review
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
+</div>
 
-    <div class="form-group">
-      <label for="comment">Comment</label>
-      {{ form.comment }}
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit Review</button>
-  </form>
+<!-- Linking CSS File -->
+<link rel="stylesheet" href="{% static 'css/leave_review.css' %}">
+<!-- Linking JS File -->
+<script src="{% static 'js/leave_review.js' %}"></script>
 {% endblock %}

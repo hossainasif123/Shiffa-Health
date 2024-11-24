@@ -31,72 +31,7 @@ class DoctorProfileView(DetailView):
    
 
 
-"""class BookAppointmentView(LoginRequiredMixin, CreateView):
-    model = Booking
-    fields = []
-    template_name = 'doctor/book_appointment.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['time_slot'] = get_object_or_404(TimeSlot, id=self.kwargs['time_slot_id'])
-        return context
-
-    def form_valid(self, form):
-        time_slot = get_object_or_404(TimeSlot, id=self.kwargs['time_slot_id'])
-        booking = Booking(
-            user=self.request.user,
-            time_slot=time_slot,
-            booking_time=timezone.now(),
-            payment_status='Pending',
-            amount=50.00  
-        )
-        booking.save()
-        doctor = time_slot.doctor_profile.user
-        
-        
-        return redirect('doctor:booking_confirmation', pk=booking.id)
-
-class BookAppointmentView(LoginRequiredMixin, CreateView):
-    model = Booking
-    fields = []
-    template_name = 'doctor/book_appointment.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['time_slot'] = get_object_or_404(TimeSlot, id=self.kwargs['time_slot_id'])
-        return context
-
-    def form_valid(self, form):
-        time_slot = get_object_or_404(TimeSlot, id=self.kwargs['time_slot_id'])
-        booking = Booking(
-            user=self.request.user,
-            time_slot=time_slot,
-            booking_time=timezone.now(),
-            payment_status='Pending',
-            amount=50.00  
-        )
-        booking.save()
-
-        # After the booking is saved, send a notification to the doctor
-        doctor = time_slot.doctor_profile.user
-        
-        # Notification message
-        message = f"New booking from {self.request.user.username} for {time_slot.start_time} - {time_slot.end_time}."
-
-        # Get the channel layer
-        channel_layer = get_channel_layer()
-
-        # Send the notification to the doctor's group
-        async_to_sync(channel_layer.group_send)(
-            f'notifications_{doctor.username}',  # Room group name based on the doctor's username
-            {
-                'type': 'booking_notification',  # Custom message type
-                'message': message  # The message content
-            }
-        )
-
-        return redirect('doctor:booking_confirmation', pk=booking.id)
-"""
 from .utils import send_websocket_notification  # Import the utility function
 
 class BookAppointmentView(LoginRequiredMixin, CreateView):
@@ -174,16 +109,6 @@ class DoctorListView(ListView):
 
 
 
-"""class NotificationsView(LoginRequiredMixin, ListView):
-    model = Notification
-    template_name = 'notification_list.html'
-    context_object_name = 'notifications'
-    ordering = ['-created_at']
-    login_url = '/login/'  # Redirects to the login page if the user is not authenticated
-
-    def get_queryset(self):
-        # Return the notifications for the logged-in user
-        return Notification.objects.filter(user=self.request.user).order_by('-created_at')"""
 
 from django.views.generic import TemplateView
 from .models import Notification

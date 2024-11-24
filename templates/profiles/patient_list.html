@@ -5,17 +5,17 @@
 
   
   <div class="profile-grid-container">
-    {% for pet in patient %}
+    {% for p in patient %}
       <div class="profile-grid-item">
         <!-- Minimal Profile Image -->
         <div class="profile-img">
-          <img src="{{ pet.profile_photo.url }}" alt="Profile Photo" class="profile-photo">
+          <img src="{{ p.profile_photo.url }}" alt="Profile Photo" class="profile-photo">
         </div>
         
         <!-- Pet's Name and Owner Username -->
         <div class="profile-info">
-          <h2 class="pet-name"><a href="{% url 'users:show-profile'  pet.id %}">{{ pet.full_name}}</a></h2>
-          <p class="owner-name">{{ patient.full_name }}</p>
+          <h2 class="pet-name"><a href="{% url 'users:show-profile'  p.id %}">{{ p.full_name}}</a></h2>
+          <p class="owner-name">{{ p.full_name }}</p>
         </div>
       </div>
     {% endfor %}

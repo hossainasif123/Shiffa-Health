@@ -14,7 +14,8 @@ body {
 
 /* Style the navigation bar */
 .navbar {
-    background-color:#7d436c;
+    background: linear-gradient(160deg, #032025, #0e698b);
+    color:#1d153b;
     padding: 1rem;
     text-align: center;
 }

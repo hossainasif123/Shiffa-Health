@@ -1,0 +1,104 @@
+/* Container Styling */
+
+.notification-container {
+  position: relative;
+  display: inline-block;
+  /* Center the container */
+  margin: 0 auto;
+  text-align: center; 
+  justify-content: center;
+  justify-items: center;/* Align contents within the container */
+}
+
+/* Notification Dropdown Styling (Card Style) */
+.notification-dropdown {
+  position: absolute;
+  top: 100%; /* Position it just below the notification trigger */
+  left: 50%; /* Position from the left of the parent container */
+  transform: translateX(-50%); /* Center it horizontally */
+  width: 400px; /* Set a medium width for the card */
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px; /* Rounded corners for card effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow for card effect */
+  z-index: 1000;
+  display: none;
+}
+
+.notification-dropdown.visible {
+  display: block;
+}
+
+/* Notification List */
+.notification-list {
+  max-height: 350px; /* Increased height for more content */
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Notification Item */
+
+
+.notification-item.empty {
+  text-align: center;
+  font-size: 1rem;
+  color: #9ca3af;
+}
+
+/* Notification Message */
+/* Notification Item */
+.notification-item {
+  display: flex;
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  align-items: center; /* Align items horizontally */
+}
+
+/* Notification Message */
+.notification-message {
+  flex-grow: 1; /* Takes up remaining space */
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Notification Time */
+.notification-time {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-left: auto; /* Pushes the time to the right */
+  text-align: right; /* Aligns the time text to the right */
+}
+
+
+/* Notification Time */
+
+
+/* Dropdown Footer */
+.dropdown-footer {
+  text-align: center;
+  padding: 1rem;
+  background: #f9fafb; /* Light background for footer */
+  border-top: 1px solid #ddd;
+}
+
+.view-all {
+  text-decoration: none;
+  color: #2563eb; /* Blue color for link */
+  font-weight: bold;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Styling */
+@media (max-width: 480px) {
+  .notification-dropdown {
+    width: 90%; /* Make dropdown smaller on mobile */
+    padding: 10px;
+    left: 50%; /* Align dropdown to the center on mobile */
+    transform: translateX(-50%); /* Center it horizontally */
+  }
+}

@@ -1,10 +1,36 @@
 {% extends "profiles/base.html" %}
+{% load static %}
 
 {% block content %}
-    <h1>Doctors</h1>
-    <ul>
-        {% for doctor in doctors %}
-            <li><a href="{% url 'doctor:doctor_profile' doctor.pk %}">{{ doctor.user.username }} - {{ doctor.specialization }}</a></li>
-        {% endfor %}
-    </ul>
+<link rel="stylesheet" href="{% static 'css/doctor_list.css' %}">
+
+<div class="container mt-8">
+  <h1 class="text-3xl font-bold text-gray-800 text-center mb-6" ><p align=center>Doctors</p></h1>
+  <div class="profile-grid-container">
+    {% for doctor in doctors %}
+      <div class="profile-grid-item">
+        <!-- Doctor Profile Image -->
+        <div class="profile-img">
+          
+          
+            <img src="{{ doctor.profile_picture.url }}" alt="Doctor's Photo" class="profile-photo">
+        
+          
+        </div>
+
+        <!-- Doctor's Name and Specialization -->
+        <div class="profile-info">
+          <h2 class="doctor-name">
+            <a href="{% url 'doctor:doctor_profile' doctor.pk %}" class="hover:text-blue-600">
+             Dr. {{ doctor.user.username }}
+            </a>
+          </h2>
+          <p class="qualifications">{{ doctor.qualifications }}</p>
+          
+          <p class="specialization">{{ doctor.specialization }} Specialist</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

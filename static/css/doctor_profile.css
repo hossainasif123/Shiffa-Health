@@ -1,0 +1,234 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f5f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Card Styling */
+.doctor-profile {
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}.card-body {
+  padding: 30px;
+  background-color: #f9f9f9;  /* Light background color for a clean look */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #007BFF;  /* Primary color */
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.info-item {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-item strong {
+  font-weight: 600;
+  color: #444;  /* Darker color for labels */
+}
+
+.info-item span {
+  font-weight: 400;
+  color: #666;  /* Lighter color for values */
+}
+
+@media (max-width: 768px) {
+  .card-body {
+      padding: 20px;
+  }
+
+  .section-title {
+      font-size: 1.4rem;
+  }
+
+  .info-item {
+      font-size: 1rem;
+  }
+}
+
+
+.card-header {
+  background: linear-gradient(200deg, #4e6779, #010e27);
+  text-align: center;
+  color: #fff;
+  padding: 20px 10px;
+  /* Increased padding for more space */
+  position: relative;
+}
+
+.card-header h3 {
+  font-weight: 700;
+  margin-bottom: 10px; /* Add space below the heading */
+  font-size: 2.2rem;
+  text-transform: uppercase;
+}
+
+.card-header p {
+  margin: 10px 0 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.card-header img {
+  width: 150px;  /* Slightly larger size */
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  position: relative;  /* Changed from absolute to position it normally */
+  margin-top: 20px;    /* Added margin to create space between heading and image */
+}
+
+/* Profile Information */
+.profile-info {
+    padding: 30px;
+}
+
+.profile-info .section-title {
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: #6c63ff;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.profile-info .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #00c9ff;
+    border-radius: 2px;
+}
+
+.profile-info p {
+    margin: 8px 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.profile-info strong {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Available Time Slots */
+.time-slots {
+    padding: 30px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.list-group-item {
+    background: #f9fafc;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.list-group-item a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6c63ff;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.list-group-item a:hover {
+    color: #00c9ff;
+    transform: scale(1.05);
+}
+
+/* Reviews Section */
+.reviews {
+    padding: 30px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.reviews .review-text {
+    font-style: italic;
+    margin-top: 8px;
+    color: #666;
+}
+
+.badge {
+    background: linear-gradient(135deg, #6c63ff, #00c9ff);
+    color: #fff;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Leave a Review Button */
+.card-footer {
+    text-align: center;
+    padding: 20px 30px;
+    background: #f9fafc;
+    border-top: 1px solid #f0f0f0;
+}
+
+.card-footer a {
+    background: linear-gradient(135deg, #6c63ff, #00c9ff);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s, transform 0.3s;
+}
+
+.card-footer a:hover {
+    background: linear-gradient(135deg, #00c9ff, #6c63ff);
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-info .row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .list-group-item {
+        font-size: 0.95rem;
+    }
+
+    .card-header img {
+        width: 100px;
+        height: 100px;
+    }
+}

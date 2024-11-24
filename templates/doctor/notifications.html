@@ -1,17 +1,24 @@
-
 {% extends 'profiles/base.html' %}
 {% block content %}
-{% load static %}  <!-- Load static tag at the top of the file -->
+{% load static %} <!-- Load static tag at the top of the file -->
+<link rel="stylesheet" href="{% static 'css/notifications.css' %}">
 
-<h2>Your Notifications</h2>
-
+<!-- Notifications Dropdown -->
 <ul class="dropdown-menu" aria-labelledby="notificationDropdown" id="notifications-dropdown">
-    <li class="dropdown-header">Recent Notifications</li>
+    <li class="dropdown-header"><h2 align="center">Recent Notifications</h2></li>
     <!-- Dynamic notifications will be added here -->
     {% for notification in notifications %}
-        <li class="notification-item">{{ notification.message }} - {{ notification.created_at }}</li>
+    <li class="notification-item">
+        <div class="notification-content">
+            <p class="notification-message">{{ notification.message }}</p>
+            <span class="notification-time">{{ notification.created_at|date:"F j, Y, g:i a" }}</span>
+        </div>
+    </li>
+    
     {% empty %}
-        <li class="notification-item">No notifications</li>
+        <li class="notification-item">
+            <p class="no-notification">No notifications</p>
+        </li>
     {% endfor %}
 </ul>
 

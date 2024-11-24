@@ -1,33 +1,96 @@
 {% extends 'profiles/base.html' %}
+{% load static %}
+
+<head>
+  
+</head>
 
 {% block content %}
-  <div class="doctorprofile">
-    <h2>Dr. {{ doctorprofile.user }} </h2>
-    <img src="{{ doctorprofile.profile_picture.url }}" alt="Profile Picture">
-    <p><strong>Specialization:</strong> {{ doctorprofile.specialization }}</p>
-    <p><strong>License Number:</strong> {{ doctorprofile.license_number }}</p>
-    <p><strong>Experience:</strong> {{ doctorprofile.years_of_experience }} years</p>
-    <p><strong>Qualifications:</strong> {{ doctorprofile.qualifications }}</p>
+<link rel="stylesheet" href="{% static 'css/doctor_profile.css' %}">
+<div class="container mt-5">
+    <div class="card doctor-profile shadow-lg border-0">
+        <!-- Profile Header -->
+        <div class="card-header bg-primary text-white text-center rounded-top">
+            <img 
+                src="{{ doctorprofile.profile_picture.url }}" 
+                alt="Profile Picture" 
+                class="rounded-circle img-thumbnail border border-light shadow"
+                style="width: 120px; height: 120px;"
+            >
+            <h3 class="mt-3 mb-0">Dr. {{ doctorprofile.user }}</h3>
+            <p class="text-light">{{ doctorprofile.specialization }}</p>
+        </div>
 
-    <h3>Available Time Slots</h3>
-    <ul>
-      {% for slot in doctorprofile.time_slots.all %}
-        <li>{{ slot.day_of_week }}: {{ slot.start_time }} - {{ slot.end_time }} 
-          <a href="{% url 'doctor:book_appointment' slot.id %}">Book</a>
-        </li>
-      {% endfor %}
-    </ul>
+        <!-- Profile Information -->
+        <div class="card-body">
+          <h4 class="section-title text-primary mb-4">Doctor Information</h4>
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="info-item">
+                      <strong>Specialization:</strong> <span>{{ doctorprofile.specialization }}</span>
+                  </div>
+                  <div class="info-item">
+                      <strong>License Number:</strong> <span>{{ doctorprofile.license_number }}</span>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="info-item">
+                      <strong>Experience:</strong> <span>{{ doctorprofile.years_of_experience }} years</span>
+                  </div>
+                  <div class="info-item">
+                      <strong>Qualifications:</strong> <span>{{ doctorprofile.qualifications }}</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+        <!-- Available Time Slots -->
+        <div class="card-body bg-light">
+            <h4 class="section-title text-primary mb-3">Available Time Slots</h4>
+            <ul class="list-group">
+                {% for slot in doctorprofile.time_slots.all %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>{{ slot.day_of_week }}: {{ slot.start_time }} - {{ slot.end_time }}</span>
+                    <a 
+                        href="{% url 'doctor:book_appointment' slot.id %}" 
+                        class="btn btn-sm btn-outline-primary"
+                    >
+                        Book Appointment
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
 
-    <h3>Reviews</h3>
-    <ul>
-      {{reviews.user}}
-      {% for review in doctorprofile.reviews.all %}
-        <li>{{ review.user}}: {{ review.rating }}/5 - "{{ review.comment }}"</li>
-      {% endfor %}
-    </ul>
+        <!-- Reviews Section -->
+        <div class="card-body">
+            <h4 class="section-title text-primary mb-3">Reviews</h4>
+            {% if doctorprofile.reviews.all %}
+            <ul class="list-group">
+                {% for review in doctorprofile.reviews.all %}
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                        <strong>{{ review.user.username}}</strong>
+                        <span class="badge bg-success">{{ review.rating }}/5</span>
+                    </div>
+                    <p class="review-text mt-2 text-muted">{{ review.comment }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-muted">No reviews available. Be the first to leave a review!</p>
+            {% endif %}
+        </div>
 
-    <a href="{% url 'doctor:leave_review' doctorprofile.id %}">Leave a Review</a>
-  </div>
+        <!-- Leave a Review Button -->
+        <div class="card-footer text-center bg-light rounded-bottom">
+            <a 
+                href="{% url 'doctor:leave_review' doctorprofile.id %}" 
+                class="btn btn-primary px-4 py-2"
+            >
+                Leave a Review
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}
-
-

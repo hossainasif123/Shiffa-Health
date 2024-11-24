@@ -1,0 +1,40 @@
+/* Star Rating */
+.star {
+    color: #ccc; /* Default grey for unselected stars */
+    transition: color 0.3s ease;
+  }
+  
+  .star.filled {
+    color: #ffcc00; /* Yellow for selected stars */
+  }
+  
+  input[type="radio"] {
+    display: none; /* Hide radio buttons */
+  }
+  
+  /* Form Styling */
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 0.5rem;
+    border: 1px solid #ddd;
+    resize: vertical;
+    transition: all 0.3s ease;
+  }
+  
+  textarea:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  button[type="submit"] {
+    font-size: 1.125rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #2980b9;
+  }
+  

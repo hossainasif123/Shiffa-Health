@@ -56,7 +56,7 @@ class Review(models.Model):
         unique_together = ('user', 'doctor_profile')"""
 
     def __str__(self):
-        return f"Review by {self.user} for {self.doctor_profile}"
+        return f"Review by {self.user.username} for {self.doctor_profile}"
 
 
 class Notification(models.Model):
